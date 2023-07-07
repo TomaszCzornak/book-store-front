@@ -1,0 +1,9 @@
+
+<div style="display:flex ; flex-direction: row; " class="owl-carousel owl-theme" >
+<ng-container *ngIf=books >
+  <ng-container *ngFor="let book of books; index as i">
+    <app-book [book]="book"></app-book>
+    <p>{{errorMessage}}</p>
+  </ng-container>
+</ng-container>
+</div>
