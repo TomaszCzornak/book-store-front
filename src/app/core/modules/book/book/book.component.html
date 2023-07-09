@@ -1,7 +1,7 @@
 <ng-container class="mat-card-container">
     <mat-card class="example-card">
       <mat-card-header class="header">
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar [style.background-image]="'url(' + book.authorDto.authorPhotoUrl + ')'" class="example-header-image"></div>
         <mat-card-title class="title-text">{{book.title}}</mat-card-title>
         <mat-card-subtitle>{{book.authorDto.firstName}}  {{book.authorDto.lastName}}</mat-card-subtitle>
       </mat-card-header>

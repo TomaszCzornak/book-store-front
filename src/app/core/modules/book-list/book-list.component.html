@@ -1,9 +1,21 @@
-
-<div style="display:flex ; flex-direction: row; " class="owl-carousel owl-theme" >
-<ng-container *ngIf=books >
-  <ng-container *ngFor="let book of books; index as i">
-    <app-book [book]="book"></app-book>
-    <p>{{errorMessage}}</p>
+<ngx-slick-carousel class="carousel"
+                    #slickModal="slick-carousel"
+                    [config]="slideConfig"
+                    (init)="slickInit($event)"
+                    (breakpoint)="breakpoint($event)"
+                    (afterChange)="afterChange($event)"
+                    (beforeChange)="beforeChange($event)">
+  <ng-container>
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <app-book [book]="slide" width="400px" style="margin-left: 2px; margin-right:2px;"></app-book>
+    </div>
   </ng-container>
-</ng-container>
+  <div ngxSlickItem style="height:400px;" class="slide"
+       [ngStyle]="{'min-height': '600px','max-height': '600px'}">
+  </div>
+</ngx-slick-carousel>
+
+<div class="button">
+  <button (click)="slickModal.slickPrev()" style="height: 50px; width: 50px; margin-top: 100px">Prev</button>
+  <button (click)="slickModal.slickNext()" style="height: 50px; width: 50px; margin-top: 100px">Next</button>
 </div>

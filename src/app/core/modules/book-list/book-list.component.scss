@@ -2,11 +2,24 @@
   max-width: 400px;
 }
 
-
 .example-header-image {
   background-image: url('/assets/4024.jpg');
   background-size: cover;
 }
- .scrolling {
+.slick-prev:before, .slick-next:before {
+  color: black!important;
+}
 
- }
+.carousel{
+  overflow: hidden;
+
+}
+.slick-initialized .slick-slide {
+  display: compact;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 50%;
+}
