@@ -6,20 +6,42 @@
   background-image: url('/assets/4024.jpg');
   background-size: cover;
 }
-.slick-prev:before, .slick-next:before {
-  color: black!important;
-}
 
 .carousel{
   overflow: hidden;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-left: 50px;
+  width: 2200px;
 
 }
 .slick-initialized .slick-slide {
   display: compact;
 }
-.button {
+
+.slick-prev:before,
+.slick-next:before {
+  color: white;
+  font-size: 70px;
+  margin-right: 70px;
+
+}
+
+.slick-prev {
+  color: white;
+  margin-left: 20px;
+}
+
+.slick-next {
+  color: white;
+  margin-right: 70px;
+}
+.slick-track {
   display: flex;
-  justify-content: center;
+}
+.slick-track .slick-slide {
+  display: flex;
+  height: auto;
   align-items: center;
-  opacity: 50%;
+  justify-content: center;
 }

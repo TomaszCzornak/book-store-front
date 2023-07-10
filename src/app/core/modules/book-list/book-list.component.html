@@ -9,13 +9,16 @@
     <div ngxSlickItem *ngFor="let slide of slides" class="slide">
       <app-book [book]="slide" width="400px" style="margin-left: 2px; margin-right:2px;"></app-book>
     </div>
-  </ng-container>
-  <div ngxSlickItem style="height:400px;" class="slide"
-       [ngStyle]="{'min-height': '600px','max-height': '600px'}">
-  </div>
-</ngx-slick-carousel>
 
+  </ng-container>
+  <div ngxSlickItem style="height:400px; width: 600px" class="slide"
+       [ngStyle]="{'min-height': '600px','max-width': '800px'}">
+  </div>
+
+</ngx-slick-carousel>
 <div class="button">
-  <button (click)="slickModal.slickPrev()" style="height: 50px; width: 50px; margin-top: 100px">Prev</button>
-  <button (click)="slickModal.slickNext()" style="height: 50px; width: 50px; margin-top: 100px">Next</button>
+  <button class="slick-next" (click)="slickModal.slickNext()"></button>
+</div>
+<div class="button2">
+  <button class="slick-prev" (click)="slickModal.slickPrev()"></button>
 </div>

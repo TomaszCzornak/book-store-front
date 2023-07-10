@@ -13,7 +13,6 @@ import {BookService} from "../../services/book.service";
 import {BookApiService} from "../../services/book-api.service";
 import {Subscription} from "rxjs";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
-
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -33,14 +32,14 @@ export class BookListComponent implements OnInit, OnDestroy {
   jQuery: any;
 
 
-  visibleCards = 1;
+  visibleCards = 4;
   cardWidth = 404;
   currentSlide = 0;
   marginBetweenCards = 2;
   slides!:Book[];
 
 
-  slideConfig = {infinite: true, "slidesToShow": 1, "slidesToScroll": 1, variableWidth: true};
+  slideConfig = {infinite: true, "slidesToShow": 2, "slidesToScroll": 1, variableWidth: true};
 
   slickInit(e: any) {
     console.log('slick initialized');
@@ -78,6 +77,7 @@ export class BookListComponent implements OnInit, OnDestroy {
         }
       }
     );
+
 
   }
 
