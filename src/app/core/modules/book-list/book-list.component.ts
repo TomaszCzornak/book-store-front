@@ -13,6 +13,7 @@ import {BookService} from "../../services/book.service";
 import {BookApiService} from "../../services/book-api.service";
 import {Subscription} from "rxjs";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
+
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -32,14 +33,14 @@ export class BookListComponent implements OnInit, OnDestroy {
   jQuery: any;
 
 
-  visibleCards = 4;
-  cardWidth = 404;
+  visibleCards = 3;
+  cardWidth = 600;
   currentSlide = 0;
   marginBetweenCards = 2;
-  slides!:Book[];
+  slides!: Book[];
 
 
-  slideConfig = {infinite: true, "slidesToShow": 2, "slidesToScroll": 1, variableWidth: true};
+  slideConfig = {infinite: true, "slidesToShow": 3, "slidesToScroll": 1, variableWidth: true, centerMode: true, centerPadding: '100px', focusOnSelect: true};
 
   slickInit(e: any) {
     console.log('slick initialized');
@@ -77,7 +78,7 @@ export class BookListComponent implements OnInit, OnDestroy {
         }
       }
     );
-
+    this.computeVisibleSlides();
 
   }
 
@@ -91,10 +92,10 @@ export class BookListComponent implements OnInit, OnDestroy {
 
 
   computeVisibleSlides() {
-    const slickListElement = (this.ref.nativeElement as HTMLElement).querySelector('mat-card-container');
+    const slickListElement = (this.ref.nativeElement as HTMLElement).querySelector('.slide');
 
     if (slickListElement) {
-      const slickWidth = (slickListElement as HTMLDivElement).clientWidth;
+      const slickWidth = (slickListElement as HTMLDivElement).offsetWidth;
       this.visibleCards = Math.floor(slickWidth / this.cardWidth);
       this.slideConfig = {...this.slideConfig, slidesToShow: this.visibleCards};
       console.log(this.visibleCards + ' tyle jest widocznych kart');

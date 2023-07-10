@@ -1,3 +1,4 @@
+<ng-container class="whole-page">
 <ngx-slick-carousel class="carousel"
                     #slickModal="slick-carousel"
                     [config]="slideConfig"
@@ -9,12 +10,10 @@
     <div ngxSlickItem *ngFor="let slide of slides" class="slide">
       <app-book [book]="slide" width="400px" style="margin-left: 2px; margin-right:2px;"></app-book>
     </div>
-
   </ng-container>
   <div ngxSlickItem style="height:400px; width: 600px" class="slide"
        [ngStyle]="{'min-height': '600px','max-width': '800px'}">
   </div>
-
 </ngx-slick-carousel>
 <div class="button">
   <button class="slick-next" (click)="slickModal.slickNext()"></button>
@@ -22,3 +21,4 @@
 <div class="button2">
   <button class="slick-prev" (click)="slickModal.slickPrev()"></button>
 </div>
+</ng-container>
