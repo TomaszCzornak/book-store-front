@@ -37,7 +37,7 @@ export class BookListComponent implements OnInit {
     centerMode: true,
     centerPadding: '100px',
     focusOnSelect: true,
-    initialSlide: 3
+    initialSlide: 0
   };
 
   slickInit(e: any) {
