@@ -1,30 +1,26 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {BookListRoutingModule} from './book-list-routing.module';
-import {BookListComponent} from './book-list.component';
+import { BookListRoutingModule } from './book-list-routing.module';
+import { BookListComponent } from './book-list.component';
 
-import {SlickCarouselModule} from "ngx-slick-carousel";
-import {MatButtonModule} from "@angular/material/button";
-import {MatCardModule} from "@angular/material/card";
-import {RouterModule} from "@angular/router";
-import {BookComponent} from "./book/book.component";
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
+import { BookComponent } from './book/book.component';
 
 @NgModule({
-  declarations: [
-    BookListComponent, BookComponent
-  ],
+  declarations: [BookListComponent, BookComponent],
   imports: [
     CommonModule,
     BookListRoutingModule,
     SlickCarouselModule,
     MatButtonModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [BookListComponent, BookComponent],
-  bootstrap:[BookListComponent]
+  bootstrap: [BookListComponent],
 })
-export class BookListModule {
-}
+export class BookListModule {}

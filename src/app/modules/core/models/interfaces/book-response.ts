@@ -1,8 +1,5 @@
-import {Book} from "./book";
+import { Book } from './book';
 
 export interface BookResponse {
-
-  bookResponseList: Book[]
-
-
+  bookResponseList: Book[];
 }

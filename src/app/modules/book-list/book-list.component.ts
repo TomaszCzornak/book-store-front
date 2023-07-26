@@ -1,13 +1,21 @@
-import {ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Output, ViewChild} from "@angular/core";
-import {Book} from "../core/models/interfaces/book";
-import {Subscription} from "rxjs";
-import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {BookApiService} from "../core/services/book.api.service";
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { Book } from '../core/models/interfaces/book';
+import { Subscription } from 'rxjs';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { BookApiService } from '../core/services/book.api.service';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
@@ -18,9 +26,8 @@ export class BookListComponent implements OnInit {
   books!: Book[];
   errorMessage = '';
   sub!: Subscription;
-  @Output() imageUrl!: String[];
+  @Output() imageUrl!: string[];
   jQuery: any;
-
 
   visibleCards = 5;
   cardWidth = 600;
@@ -28,16 +35,15 @@ export class BookListComponent implements OnInit {
   marginBetweenCards = 2;
   slides!: Book[];
 
-
   slideConfig = {
     infinite: true,
-    "slidesToShow": 3,
-    "slidesToScroll": 1,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     variableWidth: true,
     centerMode: true,
     centerPadding: '100px',
     focusOnSelect: true,
-    initialSlide: 0
+    initialSlide: 0,
   };
 
   slickInit(e: any) {
@@ -57,44 +63,44 @@ export class BookListComponent implements OnInit {
   beforeChange(e: any) {
     console.log('beforeChange');
     console.log(e.currentSlide + ' to jest beforeChange slajd');
-
   }
 
   @ViewChild('slickModal') slickModal?: SlickCarouselComponent;
 
-  constructor(private bookApiService: BookApiService, private ref: ElementRef, private cdr: ChangeDetectorRef) {
-  }
-
-  // ngAfterViewInit() {
-  //   this.computeVisibleSlides();
-  // }
+  constructor(
+    private bookApiService: BookApiService,
+    private ref: ElementRef,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this.currentSlide = 1;
     this.bookApiService.getAllBooks().subscribe({
-        next: response => {
-          this.books = response.bookResponseList
-          this.slides = response.bookResponseList
-          this.imageUrl = response.bookResponseList.map((element: { bookPhoto: String; }) => element.bookPhoto)
-          console.log(this.slides.length + ' to jest ilość elementów')
-        }
-      }
-    );
+      next: (response) => {
+        this.books = response.bookResponseList;
+        this.slides = response.bookResponseList;
+        this.imageUrl = response.bookResponseList.map(
+          (element: { bookPhoto: string }) => element.bookPhoto,
+        );
+        console.log(this.slides.length + ' to jest ilość elementów');
+      },
+    });
   }
 
-
   computeVisibleSlides() {
-    const slickListElement = (this.ref.nativeElement as HTMLElement).querySelector('.slide-list');
+    const slickListElement = (
+      this.ref.nativeElement as HTMLElement
+    ).querySelector('.slide-list');
     console.log('metoda compute');
     if (slickListElement) {
       const slickWidth = (slickListElement as HTMLDivElement).offsetWidth;
       this.visibleCards = Math.floor(slickWidth / this.cardWidth);
-      this.slideConfig = {...this.slideConfig, slidesToShow: this.visibleCards};
+      this.slideConfig = {
+        ...this.slideConfig,
+        slidesToShow: this.visibleCards,
+      };
       console.log(this.visibleCards + ' tyle jest widocznych kart');
-
     }
     this.cdr.detectChanges();
   }
-
-
 }

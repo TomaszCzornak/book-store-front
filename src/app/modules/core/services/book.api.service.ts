@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
-import {Observable} from "rxjs";
-import {environment} from "../../../../environments/environment.development";
-import {BookResponse} from "../models/interfaces/book-response";
-import {Book} from "../models/interfaces/book";
+import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
+import { BookResponse } from '../models/interfaces/book-response';
+import { Book } from '../models/interfaces/book';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookApiService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getAllBooks(): Observable<BookResponse> {
-    return this.http.get<BookResponse>(`${environment.proxyUrl}/api/book/all`)
+    return this.http.get<BookResponse>(`${environment.proxyUrl}/api/book/all`);
   }
-  getBook(id: number):Observable<Book> {
+  getBook(id: number): Observable<Book> {
     return this.http.get<Book>(`${environment.proxyUrl}/api/book/${id}`);
   }
 }
