@@ -12,14 +12,10 @@ import {FormsService} from "../core/services/forms.service";
 })
 export class AdminComponent {
 
-
-  // bookForm!: FormGroup
-  normalForm!: FormGroup
   errorMessage = '';
   urlPattern = '^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$';
 
 
-  // public initForm() {
     bookForm = new FormGroup({
       // Book: new FormGroup({
       id: new FormControl('', {
@@ -43,52 +39,48 @@ export class AdminComponent {
       }),
       authorDto: new FormGroup({
         firstName: new FormControl('', {
-          // validators: [Validators.minLength(3), Validators.maxLength(20)],
-          validators: [],
-          // nonNullable: true,
+          validators: [Validators.minLength(3), Validators.maxLength(20)],
+          // validators: [],
+          nonNullable: true,
         }),
         id: new FormControl('', {
-          // validators: [Validators.minLength(3), Validators.maxLength(20)],
-          validators: [],
-          // nonNullable: true,
+          validators: [Validators.minLength(3), Validators.maxLength(20)],
+          // validators: [],
+          nonNullable: true,
         }),
         lastName: new FormControl('', {
-          // validators: [Validators.minLength(3), Validators.maxLength(20)],
-          validators: [],
-          // nonNullable: true,
+          validators: [Validators.minLength(3), Validators.maxLength(20)],
+          // validators: [],
+          nonNullable: true,
         }),
         authorPhotoUrl: new FormControl('', {
-          // validators: [Validators.required, Validators.pattern(this.urlPattern)],
-          validators: [],
-          // nonNullable: true,
+          validators: [Validators.required, Validators.pattern(this.urlPattern)],
+          // validators: [],
+          nonNullable: true,
         })
       }),
       publisher: new FormControl('', {
-        // validators: [Validators.required, Validators.pattern(this.urlPattern)],
-        validators: [],
-        // nonNullable: true,
+        validators: [Validators.required, Validators.pattern(this.urlPattern)],
+        // validators: [],
+        nonNullable: true,
       }),
       bookPhoto: new FormControl('', {
-        // validators: [Validators.required, Validators.pattern(this.urlPattern)],
-        validators: [],
-        // nonNullable: true,
+        validators: [Validators.required, Validators.pattern(this.urlPattern)],
+        // validators: [],
+        nonNullable: true,
       }),
     });
-  // }
 
-  constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {
-  }
+  constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {}
 
   get controls(){
     return this.bookForm.controls;
-
   }
-
 
   onSubmitBookForm() {
     console.log('onSubmitBookForm');
     console.log(this.controls.constructor.name);
-    const requestBody = this.bookForm.getRawValue();
+    const forRequestBody = this.bookForm.getRawValue();
 
     // const requestData: BookDto = {
     //   id: this.bookForm.controls['id'].value,
@@ -103,20 +95,20 @@ export class AdminComponent {
     //   bookPhoto: this.bookForm.controls['bookPhoto'].value
     // }
 
-    const forRequestBody: BookDto = {
-      id: requestBody.id as unknown as number,
-      title: requestBody.title as string,
+    const RequestBody: BookDto = {
+      id: forRequestBody.id as unknown as number,
+      title: forRequestBody.title as string,
       authorDto: {
-        id: requestBody.authorDto.id as unknown as number,
-        firstName: requestBody.authorDto.firstName as string,
-        lastName: requestBody.authorDto.lastName as string,
-        authorPhotoUrl: requestBody.authorDto.authorPhotoUrl as string
+        id: forRequestBody.authorDto.id as unknown as number,
+        firstName: forRequestBody.authorDto.firstName as string,
+        lastName: forRequestBody.authorDto.lastName as string,
+        authorPhotoUrl: forRequestBody.authorDto.authorPhotoUrl as string
       },
-      publisher: requestBody.publisher as string,
-      bookPhoto: requestBody.bookPhoto as string
+      publisher: forRequestBody.publisher as string,
+      bookPhoto: forRequestBody.bookPhoto as string
       }
 
-    this.adminService.postBook(forRequestBody).subscribe({
+    this.adminService.postBook(RequestBody).subscribe({
       next: (value) => {
         this.router.navigate(['api/book/all'])
       },
