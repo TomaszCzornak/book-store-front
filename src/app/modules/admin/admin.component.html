@@ -1,48 +1,48 @@
-<form [formGroup]="normalForm" (ngSubmit)="onSubmit()">
-
-  <label for="first-name">First Name: </label>
-  <input id="first-name" type="text" formControlName="firstName">
-
-  <label for="last-name">Last Name: </label>
-  <input id="last-name" type="text" formControlName="lastName">
-  <p>Complete the form to enable button.</p>
-  <button type="submit" [disabled]="!normalForm.valid">Submit</button>
-</form>
 <!--<form [formGroup]="normalForm" (ngSubmit)="onSubmit()">-->
-<!--  onSubmit() {-->
-<!--  // TODO: Use EventEmitter with form value-->
-<!--  console.warn(this.profileForm.value);-->
-<!--  }-->
+
+<!--  <label for="first-name">First Name: </label>-->
+<!--  <input id="first-name" type="text" formControlName="firstName">-->
+
+<!--  <label for="last-name">Last Name: </label>-->
+<!--  <input id="last-name" type="text" formControlName="lastName">-->
+<!--  <p>Complete the form to enable button.</p>-->
+<!--  <button type="submit" [disabled]="!normalForm.valid">Submit</button>-->
+<!--</form>-->
+<!--&lt;!&ndash;<form [formGroup]="normalForm" (ngSubmit)="onSubmit()">&ndash;&gt;-->
+<!--&lt;!&ndash;  onSubmit() {&ndash;&gt;-->
+<!--&lt;!&ndash;  // TODO: Use EventEmitter with form &ndash;&gt;-->
+<!--&lt;!&ndash;  console.warn(this.profileForm.);&ndash;&gt;-->
+<!--&lt;!&ndash;  }&ndash;&gt;-->
 
 <div class="admin-wrapper mt-3">
   <h2>Insert New Book</h2>
   <form (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
-    <div>
-      <mat-form-field appearance="outline" style="outline-color: red">
-        <mat-label>ID</mat-label>
-        <input formControlName="id" matInput placeholder="id">
-<!--        <mat-error *ngIf="controls.title.invalid"></mat-error>-->
-      </mat-form-field>
-    </div>
+<!--    <div>-->
+<!--      <mat-form-field appearance="outline" style="outline-color: red">-->
+<!--        <mat-label>Book ID</mat-label>-->
+<!--        <input formControlName="id" matInput placeholder="id">-->
+<!--        <mat-error *ngIf="controls.id.invalid">{{getErrorMessage(controls.id)}}</mat-error>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
     <div>
       <mat-form-field appearance="outline" style="outline-color: red">
         <mat-label>Book Title</mat-label>
         <input formControlName="title" matInput placeholder="Tortilla Flat">
-        <!--        <mat-error *ngIf="controls.title.invalid"></mat-error>-->
+<!--        <mat-error *ngIf="controls.title.invalid"></mat-error>-->
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field appearance="outline" formGroupName="authorDto">
-        <mat-label>Author First Name</mat-label>
-        <input formControlName="id" matInput placeholder="id">
-<!--        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>-->
-      </mat-form-field>
-    </div>
+<!--    <div>-->
+<!--      <mat-form-field appearance="outline" formGroupName="authorDto">-->
+<!--        <mat-label>Author ID</mat-label>-->
+<!--        <input formControlName="id" matInput placeholder="id">-->
+<!--&lt;!&ndash;        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>&ndash;&gt;-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
     <div>
       <mat-form-field appearance="outline" formGroupName="authorDto">
         <mat-label>Author First Name</mat-label>
         <input formControlName="firstName" matInput placeholder="Stephen">
-        <!--        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>-->
+<!--        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>-->
       </mat-form-field>
     </div>
     <div>
@@ -70,7 +70,7 @@
       <mat-form-field appearance="outline" style="outline-color: azure">
         <mat-label>Publisher</mat-label>
         <input formControlName="publisher" matInput placeholder="PWN">
-        <!--        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>-->
+<!--        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>-->
       </mat-form-field>
     </div>
     <br>

@@ -1,4 +1,4 @@
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
 
 export interface BookResponseOld {
   id: number;
@@ -17,19 +17,7 @@ export interface BookResponseOld {
 
 export type PostBookWithAuthor = Omit<BookResponse, 'id'>;
 
-// export interface GetBooksResponse {
-//   books: Book[];
-//   totalCount: number;
-// }
-export interface PostBookWithAuthorForm {
-  title: FormControl<string>;
-  authorDto: FormGroup<{
-        firstName: FormControl<string>;
-        lastName: FormControl<string>;
-        authorPhotoUrl: FormControl<string>;
-      }>;
-  bookPhoto: FormControl<string>;
-}
+
 export interface BookResponse {
   bookDto: BookDto;
 }
@@ -47,7 +35,7 @@ export interface BookDto {
   bookPhoto: string,
 }
 export interface AuthorDto {
-  id: string,
+  id: number,
   firstName: string,
   lastName: string,
   authorPhotoUrl: string,
