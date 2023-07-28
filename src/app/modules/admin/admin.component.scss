@@ -1,0 +1,19 @@
+.admin-wrapper {
+  margin: 0 auto;
+  width: 600px;
+  .mat-mdc-form-field-infix {
+    flex: auto;
+    min-width: 0;
+    width: 180px;
+    position: relative;
+    box-sizing: border-box;
+    color: red;
+  }
+}
+
+.mat-mdc-raised-button.color-button {
+  background-color: orange;
+  color: purple;
+  border: 1px solid orange;
+}
+

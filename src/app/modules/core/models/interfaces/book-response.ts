@@ -1,5 +1,5 @@
-import { Book } from './book';
+import { BookDto } from './book';
 
 export interface BookResponse {
-  bookResponseList: Book[];
+  bookResponseList: BookDto[];
 }

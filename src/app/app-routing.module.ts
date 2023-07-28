@@ -13,6 +13,8 @@ const routes: Routes = [
     loadChildren: ()=>import('./modules/book-list/book-list.module').then((m)=>m.BookListModule)},
   { path: 'customers', loadChildren: () => import('src/app/modules/customers/customers.module').then(m => m.CustomersModule) },
 
+  {path:'api/admin/add',
+  loadChildren:()=>import('./modules/admin/admin.module').then((m)=>m.AdminModule)}
 
 ];
 

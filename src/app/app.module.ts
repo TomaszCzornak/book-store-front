@@ -15,6 +15,8 @@ import {BookListModule} from "./modules/book-list/book-list.module";
 import {CustomersRoutingModule} from "./modules/customers/customers-routing.module";
 import {MaterialModule} from "./modules/core/models/material/material.module";
 import {HomeRoutingModule} from "./modules/home/home-routing.module";
+import {AdminComponent} from "./modules/admin/admin.component";
+import {AdminModule} from "./modules/admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {HomeRoutingModule} from "./modules/home/home-routing.module";
     HttpClientModule,
     MatCardModule,
     CoreModule,
-    CustomersRoutingModule
+    CustomersRoutingModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

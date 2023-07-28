@@ -7,10 +7,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Book } from '../core/models/interfaces/book';
 import { Subscription } from 'rxjs';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { BookApiService } from '../core/services/book.api.service';
+import {BookDto} from "../core/models/interfaces/book";
 
 @Component({
   selector: 'app-book-list',
@@ -23,7 +23,7 @@ export class BookListComponent implements OnInit {
     this.computeVisibleSlides();
   }
 
-  books!: Book[];
+  books!: BookDto[];
   errorMessage = '';
   sub!: Subscription;
   @Output() imageUrl!: string[];
@@ -33,7 +33,7 @@ export class BookListComponent implements OnInit {
   cardWidth = 600;
   currentSlide = 1;
   marginBetweenCards = 2;
-  slides!: Book[];
+  slides!: BookDto[];
 
   slideConfig = {
     infinite: true,

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Book } from '../../core/models/interfaces/book';
+import { BookDto } from '../../core/models/interfaces/book';
 
 @Component({
   selector: 'app-book',
@@ -7,7 +7,7 @@ import { Book } from '../../core/models/interfaces/book';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent {
-  @Input() book!: Book;
+  @Input() book!: BookDto;
   @Input() id!: number;
   @Input() i!: number;
 }
