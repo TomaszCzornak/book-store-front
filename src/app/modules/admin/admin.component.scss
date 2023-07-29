@@ -1,19 +1,17 @@
+//@use '@angular/material' as mat;
+
 .admin-wrapper {
   margin: 0 auto;
   width: 600px;
-  .mat-mdc-form-field-infix {
-    flex: auto;
-    min-width: 0;
-    width: 180px;
-    position: relative;
-    box-sizing: border-box;
-    color: red;
-  }
+  color: white;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: white;
+
+mat-mdc-form-field-infix ng-tns-c26-5 {
+  color: white !important;
 }
-.liner {
-  color: white;
+.mat-mdc-raised-button.color-button {
+  background-color: white;
+  color: purple;
+  border: 1px solid orange;
 }

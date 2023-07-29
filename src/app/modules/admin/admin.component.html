@@ -17,69 +17,53 @@
 <div class="admin-wrapper mt-3">
   <h2>Insert New Book</h2>
   <form (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
-<!--    <div>-->
-<!--      <mat-form-field appearance="outline" style="outline-color: red">-->
-<!--        <mat-label>Book ID</mat-label>-->
-<!--        <input formControlName="id" matInput placeholder="id">-->
-<!--        <mat-error *ngIf="controls.id.invalid">{{getErrorMessage(controls.id)}}</mat-error>-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Book Title</mat-label>
         <input formControlName="title" matInput placeholder="Tortilla Flat" class="liner">
-        <mat-error *ngIf="controls.title.invalid && (controls.title.touched || controls.title.dirty)">{{getErrorMessage(controls.title)}}</mat-error>
+        <mat-error *ngIf="controls.title.invalid">{{getErrorMessage(controls.title)}}</mat-error>
       </mat-form-field>
     </div>
-<!--    <div>-->
-<!--      <mat-form-field appearance="outline" formGroupName="authorDto">-->
-<!--        <mat-label>Author ID</mat-label>-->
-<!--        <input formControlName="id" matInput placeholder="id">-->
-<!--&lt;!&ndash;        <mat-error *ngIf="controls.authorDto.invalid"></mat-error>&ndash;&gt;-->
-<!--      </mat-form-field>-->
-<!--    </div>-->
     <div>
       <mat-form-field appearance="outline" formGroupName="authorDto">
         <mat-label>Author First Name</mat-label>
         <input formControlName="firstName" matInput placeholder="Stephen">
-        <mat-error *ngIf="controls.authorDto.invalid && (controls['authorDto'].controls.firstName.touched || controls['authorDto'].controls.firstName.dirty)">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
+        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline" formGroupName="authorDto">
         <mat-label>Author Last Name</mat-label>
         <input formControlName="lastName" matInput placeholder="King">
-        <mat-error *ngIf="controls.authorDto.invalid && (controls['authorDto'].controls.lastName.touched || controls['authorDto'].controls.lastName.dirty)">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
+        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline" formGroupName="authorDto">
         <mat-label>Author Photo URL</mat-label>
         <input formControlName="authorPhotoUrl" matInput placeholder="www.photo.com">
-        <mat-error *ngIf="controls.authorDto.invalid && (controls['authorDto'].controls.authorPhotoUrl.touched || controls['authorDto'].controls.authorPhotoUrl.dirty)">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
+        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Book Photo URL</mat-label>
         <input formControlName="bookPhoto" matInput placeholder="www.photo.com">
-        <mat-error *ngIf="controls.bookPhoto.invalid && (controls.bookPhoto.touched || controls.bookPhoto.dirty)">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
+        <mat-error *ngIf="controls.bookPhoto.invalid">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Publisher</mat-label>
         <input formControlName="publisher" matInput placeholder="PWN">
-        <mat-error *ngIf="controls.authorDto.invalid && (controls.publisher.touched || controls.publisher.dirty)">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
+        <mat-error *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
       </mat-form-field>
     </div>
     <br>
-    <br>
     <div class="d-flex justify-content-end">
-      <button color="primary" mat-raised-button type="submit">Send</button>
+      <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit">Send</button>
     </div>
   </form>
-
 </div>
 
 

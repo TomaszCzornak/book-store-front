@@ -17,13 +17,14 @@ import {MaterialModule} from "./modules/core/models/material/material.module";
 import {HomeRoutingModule} from "./modules/home/home-routing.module";
 import {AdminComponent} from "./modules/admin/admin.component";
 import {AdminModule} from "./modules/admin/admin.module";
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
 
   ],
   imports: [
+    MatFormFieldModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdminService} from "../core/services/admin.service";
 import {Router} from "@angular/router";
-import {BookDto} from "../core/models/interfaces/book";
+import {BookRequest} from "../core/models/interfaces/book";
 import {FormsService} from "../core/services/forms.service";
 
 @Component({
@@ -18,16 +18,6 @@ export class AdminComponent {
 
     bookForm = new FormGroup({
       // Book: new FormGroup({
-      id: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(30),
-          Validators.max(2),
-        ],
-        // validators: [],
-        nonNullable: true,
-      }),
       title: new FormControl('', {
         validators: [
           Validators.required,
@@ -39,11 +29,6 @@ export class AdminComponent {
       }),
       authorDto: new FormGroup({
         firstName: new FormControl('', {
-          validators: [Validators.minLength(3), Validators.maxLength(20)],
-          // validators: [],
-          nonNullable: true,
-        }),
-        id: new FormControl('', {
           validators: [Validators.minLength(3), Validators.maxLength(20)],
           // validators: [],
           nonNullable: true,
@@ -60,7 +45,7 @@ export class AdminComponent {
         })
       }),
       publisher: new FormControl('', {
-        validators: [Validators.required, Validators.pattern(this.urlPattern)],
+        validators: [Validators.required],
         // validators: [],
         nonNullable: true,
       }),
@@ -69,13 +54,15 @@ export class AdminComponent {
         // validators: [],
         nonNullable: true,
       }),
-    });
+    } );
+
 
   constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {}
 
   get controls(){
     return this.bookForm.controls;
   }
+
 
   onSubmitBookForm() {
     console.log('onSubmitBookForm');
@@ -91,8 +78,7 @@ export class AdminComponent {
     //     firstName: this.bookForm.controls['authorDto'].get('firstName')?.value as string,
 
 
-    const RequestBody: BookDto = {
-      id: this.bookForm.controls['id'].value as unknown as number,
+    const RequestBody: BookRequest = {
       title: this.bookForm.controls['title'].value as string,
       authorDto: {
         id: this.bookForm.controls['authorDto'].get('id')?.value as unknown as number,
