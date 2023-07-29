@@ -11,9 +11,9 @@
   }
 }
 
-.mat-mdc-raised-button.color-button {
-  background-color: orange;
-  color: purple;
-  border: 1px solid orange;
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
 }
-
+.liner {
+  color: white;
+}

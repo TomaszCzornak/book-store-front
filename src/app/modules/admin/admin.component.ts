@@ -80,32 +80,28 @@ export class AdminComponent {
   onSubmitBookForm() {
     console.log('onSubmitBookForm');
     console.log(this.controls.constructor.name);
+    // można pobrać wszystkie dane formularza za pomocą metody getRawValue()
     const forRequestBody = this.bookForm.getRawValue();
-
+    //następnie z każdego pola forRequestBody można pobrać wartość za pomocą metody .value
     // const requestData: BookDto = {
     //   id: this.bookForm.controls['id'].value,
     //   title: this.bookForm.controls['title'].value,
     //   authorDto: {
     //     id: this.bookForm.controls['authorDto'].get('id')?.value,
     //     firstName: this.bookForm.controls['authorDto'].get('firstName')?.value as string,
-    //     lastName: this.bookForm.controls['authorDto'].get('lastName')?.value as string,
-    //     authorPhotoUrl: this.bookForm.controls['authorDto'].get('authorPhotoUrl')?.value as string
-    //   },
-    //   publisher: this.bookForm.controls['publisher'].value,
-    //   bookPhoto: this.bookForm.controls['bookPhoto'].value
-    // }
+
 
     const RequestBody: BookDto = {
-      id: forRequestBody.id as unknown as number,
-      title: forRequestBody.title as string,
+      id: this.bookForm.controls['id'].value as unknown as number,
+      title: this.bookForm.controls['title'].value as string,
       authorDto: {
-        id: forRequestBody.authorDto.id as unknown as number,
-        firstName: forRequestBody.authorDto.firstName as string,
-        lastName: forRequestBody.authorDto.lastName as string,
-        authorPhotoUrl: forRequestBody.authorDto.authorPhotoUrl as string
+        id: this.bookForm.controls['authorDto'].get('id')?.value as unknown as number,
+        firstName: this.bookForm.controls['authorDto'].get('firstName')?.value as string,
+        lastName: this.bookForm.controls['authorDto'].get('lastName')?.value as string,
+        authorPhotoUrl: this.bookForm.controls['authorDto'].get('authorPhotoUrl')?.value as string
       },
-      publisher: forRequestBody.publisher as string,
-      bookPhoto: forRequestBody.bookPhoto as string
+      publisher: this.bookForm.controls['publisher'].value,
+      bookPhoto: this.bookForm.controls['bookPhoto'].value
       }
 
     this.adminService.postBook(RequestBody).subscribe({
@@ -128,8 +124,12 @@ export class AdminComponent {
     if (control.hasError('maxlength')) {
       return 'Za długa wartość';
     }
+    if (control.hasError('pattern')) {
+      return 'Niepoprawny format www';
+    }
     return control.hasError('email') ? 'Niepoprawny email' : '';
   }
+
 
 }
 
