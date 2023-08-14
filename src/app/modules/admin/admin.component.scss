@@ -4,14 +4,22 @@
   margin: 0 auto;
   width: 600px;
   color: white;
+
 }
 
-
-mat-mdc-form-field-infix ng-tns-c26-5 {
-  color: white !important;
+.form {
+  padding: 5px;
+  width: 200px;
+  color: white;
+  position: relative;
+  bottom: 10px;
 }
-.mat-mdc-raised-button.color-button {
-  background-color: white;
-  color: purple;
-  border: 1px solid orange;
+.form-control {
+  margin-bottom: 10px;
+  color: white;
+  width: 600px;
+  background-color: inherit;
+}
+.form-select {
+  width: 300px;
 }

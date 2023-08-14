@@ -14,7 +14,7 @@ export class AdminComponent {
 
   errorMessage = '';
   urlPattern = '^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$';
-
+  publishers = ['PWN', 'ZNAK', 'AGORA', 'WYDAWNICTWO_LITERACKIE'];
 
     bookForm = new FormGroup({
       // Book: new FormGroup({
@@ -39,7 +39,7 @@ export class AdminComponent {
           nonNullable: true,
         }),
         authorPhotoUrl: new FormControl('', {
-          validators: [Validators.required, Validators.pattern(this.urlPattern)],
+          validators: [Validators.pattern(this.urlPattern)],
           // validators: [],
           nonNullable: true,
         })
@@ -57,9 +57,24 @@ export class AdminComponent {
     } );
 
 
-  constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {}
 
-  get controls(){
+  constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {
+    this.bookForm.controls['title'].valueChanges.subscribe(val => {
+        console.log('testowanie');
+        if (val.length == 3) {
+          this.bookForm.controls['authorDto'].get('lastName')?.setErrors({
+            incorrect: true,
+            message: 'Panie dzieju, nie możesz mieć tak krótkiego nazwiska!',
+          });
+        } else {
+          this.bookForm.controls['authorDto'].get('lastName')?.setErrors(null);
+        }
+      }
+    )
+    ;
+  }
+
+  get controls() {
     return this.bookForm.controls;
   }
 
@@ -113,9 +128,16 @@ export class AdminComponent {
     if (control.hasError('pattern')) {
       return 'Niepoprawny format www';
     }
+    if (control.hasError('incorrect')) {
+      return control.errors?.['message'];
+    }
     return control.hasError('email') ? 'Niepoprawny email' : '';
+
   }
 
 
+  printOutMethod() {
+    console.log(this.bookForm)
+  }
 }
 

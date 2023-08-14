@@ -21,20 +21,22 @@
 
 .slick-prev:before,
 .slick-next:before {
-  color: white;
   font-size: 70px;
   margin-right: 70px;
+  color: black;
 
 }
 
 .slick-prev {
-  color: white;
+  color: black;
   margin-left: 20px;
+  font-size: 70px;
 }
 
 .slick-next {
-  color: white;
+  color: black;
   margin-right: 70px;
+  font-size: 70px;
 }
 .slick-track {
   display: flex;

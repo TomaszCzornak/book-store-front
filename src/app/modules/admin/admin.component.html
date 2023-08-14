@@ -16,52 +16,50 @@
 
 <div class="admin-wrapper mt-3">
   <h2>Insert New Book</h2>
-  <form (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Book Title</mat-label>
-        <input formControlName="title" matInput placeholder="Tortilla Flat" class="liner">
-        <mat-error *ngIf="controls.title.invalid">{{getErrorMessage(controls.title)}}</mat-error>
-      </mat-form-field>
+  <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
+    <div class="form-group">
+      <input formControlName="title" placeholder="Tortilla Flat"
+             class="form-control bg-opacity-100 text-white border-white">
+      <mat-error *ngIf="controls.title.invalid  && (controls.title.touched)">{{getErrorMessage(controls.title)}}</mat-error>
     </div>
-    <div>
-      <mat-form-field appearance="outline" formGroupName="authorDto">
-        <mat-label>Author First Name</mat-label>
-        <input formControlName="firstName" matInput placeholder="Stephen">
-        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
-      </mat-form-field>
+    <div formGroupName="authorDto">
+      <div class="form-group">
+        <input formControlName="firstName" class="form-control bg-opacity-100 text-white border-white"
+               placeholder="Stephen">
+        <mat-error
+          *ngIf="controls.authorDto.get('firstName')?.invalid && controls.authorDto.get('firstName')?.touched">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
+      </div>
+      <div class="form-group">
+        <input formControlName="lastName" class="form-control bg-opacity-100 text-white border-white"
+               placeholder="King">
+        <mat-error
+          *ngIf="controls.authorDto.get('lastName')?.invalid && controls.authorDto.get('lastName')?.touched">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
+      </div>
+      <div class="form-group">
+        <input formControlName="authorPhotoUrl" class="form-control text-white border-white"
+               placeholder="www.photoofauthor.com">
+        <mat-error
+          *ngIf="controls.authorDto.get('authorPhotoUrl')?.invalid && controls.authorDto.get('authorPhotoUrl')?.touched">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
+      </div>
     </div>
-    <div>
-      <mat-form-field appearance="outline" formGroupName="authorDto">
-        <mat-label>Author Last Name</mat-label>
-        <input formControlName="lastName" matInput placeholder="King">
-        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="outline" formGroupName="authorDto">
-        <mat-label>Author Photo URL</mat-label>
-        <input formControlName="authorPhotoUrl" matInput placeholder="www.photo.com">
-        <mat-error *ngIf="controls.authorDto.invalid">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Book Photo URL</mat-label>
-        <input formControlName="bookPhoto" matInput placeholder="www.photo.com">
-        <mat-error *ngIf="controls.bookPhoto.invalid">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Publisher</mat-label>
-        <input formControlName="publisher" matInput placeholder="PWN">
-        <mat-error *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
-      </mat-form-field>
+    <div class="form-group">
+      <input formControlName="bookPhoto" class="form-control bg-opacity-100 text-white border-white"
+             placeholder="www.photoofbook.com">
+      <mat-error *ngIf="controls.bookPhoto.invalid && controls.bookPhoto.touched">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
+   </div>
+    <div class="form-group">
+<label>Select Publisher</label>
+      <select formControlName="publisher" class="form-select">
+        <option *ngFor="let publisher of publishers" [value]="publisher"
+                [ngStyle]="{'text-color': 'black', 'background-color':'white', 'width':'300px'}">{{publisher}}</option>
+       <mat-error *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
+      </select>
     </div>
     <br>
-    <div class="d-flex justify-content-end">
-      <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit">Send</button>
+    <div>
+      <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit"
+              [ngStyle]="{'position':'relative', 'left':'2'}">Send
+      </button>
     </div>
   </form>
 </div>
