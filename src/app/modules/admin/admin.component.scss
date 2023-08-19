@@ -1,7 +1,5 @@
-//@use '@angular/material' as mat;
-
 .admin-wrapper {
-  margin: 0 auto;
+  margin-right: -100px;
   width: 600px;
   color: white;
 
@@ -14,12 +12,15 @@
   position: relative;
   bottom: 10px;
 }
+
 .form-control {
   margin-bottom: 10px;
   color: white;
   width: 600px;
   background-color: inherit;
 }
+
 .form-select {
   width: 300px;
 }
+

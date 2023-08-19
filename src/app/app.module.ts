@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
-
 import {HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
 import {CoreModule} from "./modules/core/core.module";
@@ -15,9 +14,21 @@ import {BookListModule} from "./modules/book-list/book-list.module";
 import {CustomersRoutingModule} from "./modules/customers/customers-routing.module";
 import {MaterialModule} from "./modules/core/models/material/material.module";
 import {HomeRoutingModule} from "./modules/home/home-routing.module";
-import {AdminComponent} from "./modules/admin/admin.component";
 import {AdminModule} from "./modules/admin/admin.module";
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MAT_DATE_FORMATS, MatDateFormats, MatNativeDateModule} from "@angular/material/core";
+
+export const MY_DATE_FORMATS: MatDateFormats = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,9 +47,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCardModule,
     CoreModule,
     CustomersRoutingModule,
-    AdminModule
+    AdminModule,
+    AdminModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },],
   bootstrap: [AppComponent]
 })
 export class AppModule {

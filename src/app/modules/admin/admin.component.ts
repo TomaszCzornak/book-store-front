@@ -4,8 +4,11 @@ import {AdminService} from "../core/services/admin.service";
 import {Router} from "@angular/router";
 import {BookRequest} from "../core/models/interfaces/book";
 import {FormsService} from "../core/services/forms.service";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
-@Component({
+@Component({  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+  ],
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
@@ -15,8 +18,17 @@ export class AdminComponent {
   errorMessage = '';
   urlPattern = '^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$';
   publishers = ['PWN', 'ZNAK', 'AGORA', 'WYDAWNICTWO_LITERACKIE'];
+  date?: string;
 
     bookForm = new FormGroup({
+      dateTitle: new FormControl('', {
+        validators: [Validators.required],
+
+      }),
+      dateAuthor: new FormControl('', {
+        validators: [Validators.required],
+
+      }),
       // Book: new FormGroup({
       title: new FormControl('', {
         validators: [
@@ -135,9 +147,5 @@ export class AdminComponent {
 
   }
 
-
-  printOutMethod() {
-    console.log(this.bookForm)
-  }
 }
 

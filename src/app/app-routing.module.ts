@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 
 const routes: Routes = [
-  {path:'', redirectTo: 'home', pathMatch: 'full', title:'Home Page'},
+  {path:'', redirectTo: 'api/admin/add', pathMatch: 'full', title:'Home Page'},
   {
     path: 'home',
     loadChildren: () =>
