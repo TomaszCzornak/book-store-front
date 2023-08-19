@@ -1,7 +1,7 @@
-<ng-container cdk-scrollable>
+<div class="container" style="display: flex; justify-content: space-between">
 <div class="row">
-  <div class="col">
-    <div class="admin-wrapper mt-3">
+  <div class="col" style="flex-basis: 50%; text-align: center">
+    <div class="admin-wrapper mt-3"  >
       <h2>Insert New Book</h2>
       <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
         <div class="form-group">
@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <div class="col mt-5">
+  <div class="col mt-5" style="flex-basis: 50%; text-align: center">
     <form [formGroup]="bookForm">
       <mat-form-field class="example-full-width">
         <mat-label class="date-label">Book Creation Date</mat-label>
@@ -85,8 +85,7 @@
     </div>
   </div>
 </div>
-</ng-container>
-
+</div>
 
 
 
