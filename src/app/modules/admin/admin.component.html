@@ -1,92 +1,154 @@
-<div class="container" style="display: flex; justify-content: space-between">
-<div class="row">
-  <div class="col" style="flex-basis: 50%; text-align: center">
-    <div class="admin-wrapper mt-3"  >
-      <h2>Insert New Book</h2>
-      <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
-        <div class="form-group">
-          <input formControlName="title" placeholder="Tortilla Flat"
-                 class="form-control bg-opacity-100 text-white border-white">
-          <mat-error
-            *ngIf="controls.title.invalid  && (controls.title.touched)">{{getErrorMessage(controls.title)}}</mat-error>
-        </div>
-        <div formGroupName="authorDto">
-          <div class="form-group">
-            <input formControlName="firstName" class="form-control bg-opacity-100 text-white border-white"
-                   placeholder="Stephen">
-            <mat-error
-              *ngIf="controls.authorDto.get('firstName')?.invalid && controls.authorDto.get('firstName')?.touched">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
-          </div>
-          <div class="form-group">
-            <input formControlName="lastName" class="form-control bg-opacity-100 text-white border-white"
-                   placeholder="King">
-            <mat-error
-              *ngIf="controls.authorDto.get('lastName')?.invalid && controls.authorDto.get('lastName')?.touched">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
-          </div>
-          <div class="form-group">
-            <input formControlName="authorPhotoUrl" class="form-control text-white border-white"
-                   placeholder="www.photoofauthor.com">
-            <mat-error
-              *ngIf="controls.authorDto.get('authorPhotoUrl')?.invalid && controls.authorDto.get('authorPhotoUrl')?.touched">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
-          </div>
-        </div>
-        <div class="form-group">
-          <input formControlName="bookPhoto" class="form-control bg-opacity-100 text-white border-white"
-                 placeholder="www.photoofbook.com">
-          <mat-error
-            *ngIf="controls.bookPhoto.invalid && controls.bookPhoto.touched">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
-        </div>
-        <div class="form-group">
-          <label>Select Publisher</label>
-          <select formControlName="publisher" class="form-select">
-            <option *ngFor="let publisher of publishers" [value]="publisher"
-                    [ngStyle]="{'text-color': 'black', 'background-color':'white', 'width':'300px'}">{{publisher}}</option>
-            <mat-error *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
-          </select>
-        </div>
-        <br>
-        <div>
-          <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit"
-                  [ngStyle]="{'position':'relative', 'left':'2'}">Send
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="col mt-5" style="flex-basis: 50%; text-align: center">
-    <form [formGroup]="bookForm">
-      <mat-form-field class="example-full-width">
-        <mat-label class="date-label">Book Creation Date</mat-label>
-        <input class="date-input" matInput [matDatepicker]="picker" formControlName="dateTitle">
-        <mat-hint class="date-hint">DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon class="date-arrow">keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-error *ngIf="controls.dateTitle.invalid && (controls.dateTitle.touched)">{{getErrorMessage(controls.dateTitle)}}</mat-error>
-    </form>
+<div class="container-form" style="display: flex; justify-content: space-between">
     <div class="row">
-      <div class="col">
-        <form [formGroup]="bookForm">
-          <mat-form-field class="example-full-width">
-            <mat-label class="date-label">Author Birth Date</mat-label>
-            <input class="date-input" matInput [matDatepicker]="picker2" formControlName="dateAuthor">
-            <mat-hint class="date-hint">DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker2">
-              <mat-icon matDatepickerToggleIcon class="date-arrow">keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-          <mat-error *ngIf="controls.dateAuthor.invalid && (controls.dateAuthor.touched)">{{getErrorMessage(controls.dateAuthor)}}</mat-error>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+        <div class="col" style="flex-basis: 50%; text-align: center">
+            <div class="admin-wrapper mt-3">
+                <h2>Insert New Book</h2>
+                <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
+                    <div class="form-group">
+                        <input formControlName="title" placeholder="Tortilla Flat"
+                               class="form-control bg-opacity-100 text-white border-white">
+                        <mat-error
+                                *ngIf="controls.title.invalid  && (controls.title.touched)">{{getErrorMessage(controls.title)}}</mat-error>
+                    </div>
+                    <div formGroupName="authorDto">
+                        <div class="form-group">
+                            <input formControlName="firstName"
+                                   class="form-control bg-opacity-100 text-white border-white"
+                                   placeholder="Stephen">
+                            <mat-error
+                                    *ngIf="controls.authorDto.get('firstName')?.invalid && controls.authorDto.get('firstName')?.touched">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="lastName"
+                                   class="form-control bg-opacity-100 text-white border-white"
+                                   placeholder="King">
+                            <mat-error
+                                    *ngIf="controls.authorDto.get('lastName')?.invalid && controls.authorDto.get('lastName')?.touched">{{getErrorMessage(controls['authorDto'].controls.lastName)}}</mat-error>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="authorPhotoUrl" class="form-control text-white border-white"
+                                   placeholder="www.photoofauthor.com">
+                            <mat-error
+                                    *ngIf="controls.authorDto.get('authorPhotoUrl')?.invalid && controls.authorDto.get('authorPhotoUrl')?.touched">{{getErrorMessage(controls['authorDto'].controls.authorPhotoUrl)}}</mat-error>
+                        </div>
+                    </div>
 
+                    <div formGroupName="authorBookDto">
+                        <div class="form-group">
+                            <input formControlName="firstName"
+                                   class="form-control bg-opacity-100 text-white border-white"
+                                   placeholder="Book's Author First Name">
+                            <mat-error
+                                    *ngIf="controls.authorBookDto.get('firstName')?.invalid && controls.authorBookDto.get('firstName')?.touched">{{getErrorMessage(controls['authorBookDto'].controls.firstName)}}</mat-error>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="lastName"
+                                   class="form-control bg-opacity-100 text-white border-white"
+                                   placeholder="Book's Author Last Name">
+                            <mat-error
+                                    *ngIf="controls.authorBookDto.get('lastName')?.invalid && controls.authorBookDto.get('lastName')?.touched">{{getErrorMessage(controls['authorBookDto'].controls.lastName)}}</mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="bookPhoto" class="form-control bg-opacity-100 text-white border-white"
+                               placeholder="www.photoofbook.com">
+                        <mat-error
+                                *ngIf="controls.bookPhoto.invalid && controls.bookPhoto.touched">{{getErrorMessage(controls.bookPhoto)}}</mat-error>
+                    </div>
+
+                    <div class="form-group">
+                        <input formControlName="category" class="form-control bg-opacity-100 text-white border-white"
+                               placeholder="Category">
+                        <mat-error
+                                *ngIf="controls.category.invalid && controls.category.touched">{{getErrorMessage(controls.category)}}</mat-error>
+                    </div>
+
+                    <div formGroupName="category">
+                        <div class="form-group">
+                            <input formControlName="firstName"
+                                   class="form-control bg-opacity-100 text-white border-white"
+                                   placeholder="Category's Category">
+                            <mat-error
+                                    *ngIf="controls.authorDto.get('firstName')?.invalid && controls.authorDto.get('firstName')?.touched">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Publisher</label>
+                            <select formControlName="publisher" class="form-select">
+                                <option *ngFor="let publisher of publishers" [value]="publisher"
+                                        [ngStyle]="{'text-color': 'black', 'background-color':'white', 'width':'300px'}">{{publisher}}</option>
+                                <mat-error
+                                        *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit"
+                                    [ngStyle]="{'position':'relative', 'left':'2'}">Send
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div class="container-picker">
+    <div class="col mt-5" style="flex-basis: 50%; text-align: center">
+        <form [formGroup]="bookForm">
+            <mat-form-field class="picker-1">
+                <mat-label class="date-label">Book Creation Date</mat-label>
+                <input class="date-input" matInput [matDatepicker]="picker" formControlName="dateTitle">
+                <mat-hint class="date-hint">DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon class="date-arrow">keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-error
+                    *ngIf="controls.dateTitle.invalid && (controls.dateTitle.touched)">{{getErrorMessage(controls.dateTitle)}}</mat-error>
+        </form>
+        <!--    <div class="row">-->
+        <div class="col">
+            <form [formGroup]="bookForm">
+                <mat-form-field class="picker-2">
+                    <mat-label class="date-label">Author Birth Date</mat-label>
+                    <input class="date-input" matInput [matDatepicker]="picker2" formControlName="dateAuthor">
+                    <mat-hint class="date-hint">DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2">
+                        <mat-icon matDatepickerToggleIcon class="date-arrow">keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-error
+                        *ngIf="controls.dateAuthor.invalid && (controls.dateAuthor.touched)">{{getErrorMessage(controls.dateAuthor)}}</mat-error>
+            </form>
+        </div>
+        <!--    </div>-->
+
+        <!--    <div class="row">-->
+        <div class="col">
+            <form [formGroup]="bookForm">
+                <mat-form-field class="picker-3">
+                    <mat-label class="date-label">Category Creation Date</mat-label>
+                    <input class="date-input" matInput [matDatepicker]="picker3" formControlName="dateCategory">
+                    <mat-hint class="date-hint">DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker3">
+                        <mat-icon matDatepickerToggleIcon class="date-arrow">keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+                <mat-error
+                        *ngIf="controls.dateCategory.invalid && (controls.dateCategory.touched)">{{getErrorMessage(controls.dateCategory)}}</mat-error>
+            </form>
+        </div>
+        <!--    </div>-->
+
+    </div>
+</div>
+</div>
 
 
 

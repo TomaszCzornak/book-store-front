@@ -1,28 +1,33 @@
 .admin-wrapper {
-  //position: relative;
-  //left: 10vw;
-  //right: 1px;
-  //width: 6vw;
-  //color: white;
+  position: relative;
+  left: 10vw;
+  right: 1px;
+  width: 12vw;
+  color: white;
 
 }
-//
-//.form {
-//  padding: 5px;
-//  width: 200px;
-//  color: white;
-//  position: relative;
-//  bottom: 10px;
-//}
-//
+
+
 .form-control {
   margin-bottom: 10px;
   color: white;
   width: 5cap;
   background-color: inherit;
 }
-//
 .form-select {
   width: 5cap;
 }
-
+.container-form {
+  position: relative;
+  left: 30vw;
+  right: 1px;
+  width: 20vw;
+  color: white;
+  background-color: inherit;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.container-picker {
+  margin-left: 15vw;
+}
