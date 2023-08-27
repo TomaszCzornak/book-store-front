@@ -26,15 +26,15 @@ export class AdminComponent implements OnDestroy {
 
   bookForm = new FormGroup({
     dateBookCreation: new FormControl('', {
-      validators: [Validators.required],
+      validators: [Validators.minLength(8)],
 
     }),
     dateAuthor: new FormControl('', {
-      validators: [Validators.required],
+      validators: [Validators.minLength(8)],
 
     }),
     dateCategory: new FormControl('', {
-      validators: [Validators.required],
+      validators: [Validators.minLength(8)],
 
     }),
     category: new FormControl('', {
@@ -99,6 +99,7 @@ export class AdminComponent implements OnDestroy {
     this.subscription = this.bookForm.controls['dateBookCreation'].valueChanges.subscribe(val => {
         const dateTitle = formatDate(val as string, 'yyyy-MM-dd', 'en_US');
         const dateAuthor = formatDate(this.bookForm.controls['dateAuthor'].value as string, 'yyyy-MM-dd', 'en_US');
+        const dateCategory = formatDate(this.bookForm.controls['dateCategory'].value as string, 'yyyy-MM-dd', 'en_US')
         if (dateAuthor !== '' && dateTitle < dateAuthor) {
           this.bookForm.controls['dateBookCreation'].setErrors({
             incorrect: true,
@@ -107,6 +108,17 @@ export class AdminComponent implements OnDestroy {
         } else {
           this.bookForm.controls['dateBookCreation'].setErrors(null);
           this.bookForm.controls['dateAuthor'].setErrors(null);
+          this.bookForm.controls['dateCategory'].setErrors(null);
+
+        }
+      if (dateCategory !=='' && dateTitle > dateCategory) {
+          this.bookForm.controls['dateBookCreation'].setErrors({
+            incorrect: true,
+            message: 'Książka nie może być nowsza od kategorii!',
+          });
+        } else {
+          this.bookForm.controls['dateBookCreation'].setErrors(null);
+          this.bookForm.controls['dateCategory'].setErrors(null);
         }
       }
     );
