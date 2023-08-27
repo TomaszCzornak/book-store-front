@@ -62,17 +62,18 @@
             <input formControlName="category" class="form-control bg-opacity-100 text-white border-white"
                    placeholder="Category">
             <mat-error
-              *ngIf="controls.category.invalid && controls.category.touched">{{getErrorMessage(controls.category)}}</mat-error>
+              *ngIf="controls.category.invalid">{{getErrorMessage(controls.category)}}</mat-error>
           </div>
 
-          <div formGroupName="category">
+          <div formGroupName="categoryCategory">
             <div class="form-group">
-              <input formControlName="firstName"
+              <input formControlName="categoryCategory"
                      class="form-control bg-opacity-100 text-white border-white"
                      placeholder="Category's Category">
               <mat-error
-                *ngIf="controls.authorDto.get('firstName')?.invalid && controls.authorDto.get('firstName')?.touched">{{getErrorMessage(controls['authorDto'].controls.firstName)}}</mat-error>
+                *ngIf="controls.categoryCategory.get('categoryCategory')?.invalid">{{getErrorMessage(controls['categoryCategory'].controls.categoryCategory)}}</mat-error>
             </div>
+          </div>
 
             <div class="form-group">
               <label>Select Publisher</label>
@@ -89,7 +90,6 @@
                       [ngStyle]="{'position':'relative', 'left':'2'}">Send
               </button>
             </div>
-          </div>
 
         </form>
       </div>
@@ -110,7 +110,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-error
-            *ngIf="controls.dateBookCreation.invalid && (controls.dateBookCreation.touched)">{{getErrorMessage(controls.dateBookCreation)}}</mat-error>
+            *ngIf="controls.dateBookCreation.invalid">{{getErrorMessage(controls.dateBookCreation)}}</mat-error>
         </form>
 
         <div class="col">
@@ -125,7 +125,7 @@
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
             <mat-error
-              *ngIf="controls.dateAuthor.invalid && (controls.dateAuthor.touched)">{{getErrorMessage(controls.dateAuthor)}}</mat-error>
+              *ngIf="controls.dateAuthor.invalid">{{getErrorMessage(controls.dateAuthor)}}</mat-error>
           </form>
         </div>
       </div>
@@ -143,7 +143,7 @@
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
             <mat-error
-              *ngIf="controls.dateCategory.invalid && (controls.dateCategory.touched)">{{getErrorMessage(controls.dateCategory)}}</mat-error>
+              *ngIf="controls.dateCategory.invalid">{{getErrorMessage(controls.dateCategory)}}</mat-error>
           </form>
         </div>
       </div>
