@@ -17,7 +17,8 @@ import {Subscription} from "rxjs";
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnDestroy {
-
+  // hello :D Tutaj Adrian
+  //a tutaj Tomek
   errorMessage = '';
   urlPattern = '^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$';
   publishers = ['PWN', 'ZNAK', 'AGORA', 'WYDAWNICTWO_LITERACKIE'];
@@ -51,52 +52,56 @@ export class AdminComponent implements OnDestroy {
         Validators.minLength(3),
         Validators.maxLength(30),
       ],
-      // validators: [],
+
       nonNullable: true,
     }),
     authorBookDto: new FormGroup({
       firstName: new FormControl('', {
         validators: [Validators.minLength(3), Validators.maxLength(20)],
-        // validators: [],
+
         nonNullable: true,
       }),
       lastName: new FormControl('', {
         validators: [Validators.minLength(3), Validators.maxLength(20)],
-        // validators: [],
+
         nonNullable: true,
       }),
     }),
     authorDto: new FormGroup({
       firstName: new FormControl('', {
         validators: [Validators.minLength(3), Validators.maxLength(20)],
-        // validators: [],
+
         nonNullable: true,
       }),
       lastName: new FormControl('', {
         validators: [Validators.minLength(3), Validators.maxLength(20)],
-        // validators: [],
+
         nonNullable: true,
       }),
       authorPhotoUrl: new FormControl('', {
+        // TODO:AR -> Zobacz jak zrobić własny validator i go podac jako jeden z walidatorów do tej tablicy poniżej
         validators: [Validators.pattern(this.urlPattern)],
-        // validators: [],
+
         nonNullable: true,
       })
     }),
     publisher: new FormControl('', {
       validators: [Validators.required],
-      // validators: [],
+
       nonNullable: true,
     }),
     bookPhoto: new FormControl('', {
       validators: [Validators.required, Validators.pattern(this.urlPattern)],
-      // validators: [],
+
       nonNullable: true,
     }),
   });
 
+  // TODO:AR -> logika walidacji do @OnInit
   constructor(private adminService: AdminService, private router: Router, private formService: FormsService, @Inject(LOCALE_ID) private locale: string) {
-    this.subscription = this.bookForm.controls['dateBookCreation'].valueChanges.subscribe(val => {
+    // TODO:AR -> każda walidacja do osobnej metody
+    this.subscription = this.bookForm.controls['dateBookCreation']?.valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['dateBookCreation']");
         const dateTitle = formatDate(val as string, 'yyyy-MM-dd', 'en_US');
         const dateAuthor = formatDate(this.bookForm.controls['dateAuthor'].value as string, 'yyyy-MM-dd', 'en_US');
         const dateCategory = formatDate(this.bookForm.controls['dateCategory'].value as string, 'yyyy-MM-dd', 'en_US')
@@ -124,6 +129,7 @@ export class AdminComponent implements OnDestroy {
     );
 
     this.subscription = this.bookForm.controls['dateAuthor'].valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['dateAuthor']");
         let dateAuthor = formatDate(val as string, 'yyyy-MM-dd', 'en_US');
         let dateTitle = formatDate(this.bookForm.controls['dateBookCreation'].value as string, 'yyyy-MM-dd', 'en_US');
         if (dateTitle !== '' && dateAuthor > dateTitle) {
@@ -139,9 +145,9 @@ export class AdminComponent implements OnDestroy {
     );
 
     this.subscription = this.bookForm.controls['dateCategory'].valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['dateCategory']");
         let dateCategory = formatDate(val as string, 'yyyy-MM-dd', 'en_US');
         let dateBook = formatDate(this.bookForm.controls['dateBookCreation'].value as string, 'yyyy-MM-dd', 'en_US');
-      debugger;
       if (dateCategory !== '' && dateCategory < dateBook) {
           this.bookForm.controls['dateCategory'].setErrors({
             incorrect: true,
@@ -155,6 +161,7 @@ export class AdminComponent implements OnDestroy {
     );
 
     this.subscription = this.bookForm.controls['authorDto'].get('lastName')?.valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['authorDto']");
         const authorBookLastName = this.bookForm.controls['authorBookDto'].get('lastName')?.value;
         if (authorBookLastName !== '' && val !== authorBookLastName) {
           this.bookForm.controls['authorDto'].get('lastName')?.setErrors({
@@ -171,6 +178,7 @@ export class AdminComponent implements OnDestroy {
     );
 
     this.subscription = this.bookForm.controls['authorBookDto'].get('lastName')?.valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['authorBookDto']");
         const authorLastName = this.bookForm.controls['authorDto'].get('lastName')?.value;
         if (authorLastName !== '' && val !== authorLastName) {
           this.bookForm.controls['authorBookDto'].get('lastName')?.setErrors({
@@ -187,12 +195,12 @@ export class AdminComponent implements OnDestroy {
     );
 
     this.subscription = this.bookForm.controls['category']?.valueChanges.subscribe(val => {
+        console.log("Hello from this.bookForm.controls['category']");
         const categoryCategory = this.bookForm.controls['categoryCategory'].get('categoryCategory')?.value;
         if (categoryCategory !== '' && val !== categoryCategory) {
           this.bookForm.controls['category'].setErrors({
             incorrect: true,
             message: 'Kategoria musi być taka sama jak kategoria kategorii!',
-
           });
         } else {
           this.bookForm.controls['category']?.setErrors(null);
@@ -202,18 +210,16 @@ export class AdminComponent implements OnDestroy {
       }
     );
     this.subscription = this.bookForm.controls['categoryCategory'].get('categoryCategory')?.valueChanges.subscribe(val => {
-       debugger;
+        console.log("Hello from this.bookForm.controls['categoryCategory']");
         const category = this.bookForm.controls['category'].value;
         if (category !== '' && val !== category) {
           this.bookForm.controls['categoryCategory'].get('categoryCategory')?.setErrors({
             incorrect: true,
             message: 'Kategoria kategorii musi być taka sama jak kategoria!',
-
           });
         } else {
           this.bookForm.controls['categoryCategory'].get('categoryCategory')?.setErrors(null);
           this.bookForm.controls['category']?.setErrors(null);
-
         }
       }
     );
