@@ -7,6 +7,7 @@ import {FormsService} from "../core/services/forms.service";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {formatDate} from "@angular/common";
 import {Subscription} from "rxjs";
+import {capitalLetterValidator} from "./custom-validators";
 
 @Component({
   providers: [
@@ -42,8 +43,8 @@ export class AdminComponent implements OnDestroy {
       validators: [Validators.minLength(3), Validators.maxLength(20)],
 
     }),
-    categoryCategory : new FormGroup({
-      categoryCategory: new FormControl('', { validators: [Validators.minLength(3), Validators.maxLength(20)] }),
+    categoryCategory: new FormGroup({
+      categoryCategory: new FormControl('', {validators: [Validators.minLength(3), Validators.maxLength(20)]}),
     }),
     // Book: new FormGroup({
     title: new FormControl('', {
@@ -57,7 +58,7 @@ export class AdminComponent implements OnDestroy {
     }),
     authorBookDto: new FormGroup({
       firstName: new FormControl('', {
-        validators: [Validators.minLength(3), Validators.maxLength(20)],
+        validators: [Validators.minLength(3), Validators.maxLength(20), capitalLetterValidator],
 
         nonNullable: true,
       }),
@@ -116,7 +117,7 @@ export class AdminComponent implements OnDestroy {
           this.bookForm.controls['dateCategory'].setErrors(null);
 
         }
-      if (dateCategory !=='' && dateTitle > dateCategory) {
+        if (dateCategory !== '' && dateTitle > dateCategory) {
           this.bookForm.controls['dateBookCreation'].setErrors({
             incorrect: true,
             message: 'Książka nie może być nowsza od kategorii!',
@@ -148,7 +149,7 @@ export class AdminComponent implements OnDestroy {
         console.log("Hello from this.bookForm.controls['dateCategory']");
         let dateCategory = formatDate(val as string, 'yyyy-MM-dd', 'en_US');
         let dateBook = formatDate(this.bookForm.controls['dateBookCreation'].value as string, 'yyyy-MM-dd', 'en_US');
-      if (dateCategory !== '' && dateCategory < dateBook) {
+        if (dateCategory !== '' && dateCategory < dateBook) {
           this.bookForm.controls['dateCategory'].setErrors({
             incorrect: true,
             message: 'Panie dzieju, kategoria musi powstać później niż sama książka',
@@ -269,8 +270,10 @@ export class AdminComponent implements OnDestroy {
     if (control.hasError('incorrect')) {
       return control.errors?.['message'];
     }
+    if (control.hasError('capitalLetter')) {
+      return 'Pierwsza litera musi być wielka';
+    }
     return control.hasError('email') ? 'Niepoprawny email' : '';
-
   }
 
   ngOnDestroy(): void {
@@ -278,4 +281,3 @@ export class AdminComponent implements OnDestroy {
   }
 
 }
-
