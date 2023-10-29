@@ -1,7 +1,7 @@
 <div class="container" style="display: flex; justify-content: space-between">
 <div class="row">
-  <div class="col" style="flex-basis: 50%; text-align: center">
-    <div class="admin-wrapper mt-3"  >
+  <div class="col" style="flex-basis: 100%; text-align: center">
+    <div class="admin-wrapper mt-3">
       <h2>Insert New Book</h2>
       <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
         <div class="form-group">
@@ -45,9 +45,9 @@
           </select>
         </div>
         <br>
-        <div>
+        <div class="submitter">
           <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit"
-                  [ngStyle]="{'position':'relative', 'left':'2'}">Send
+                  [ngStyle]="{'position':'relative', 'margin-left':'15px'}">Send
           </button>
         </div>
       </form>
