@@ -1,6 +1,6 @@
-<div class="container" style="display: flex; justify-content: space-between">
+<div class="container" style="display: flex; justify-content: center; align-content: center">
 <div class="row">
-  <div class="col" style="flex-basis: 100%; text-align: center">
+  <div class="col" style="flex-basis: 50%; text-align: center">
     <div class="admin-wrapper mt-3">
       <h2>Insert New Book</h2>
       <form class="form" (ngSubmit)="onSubmitBookForm()" [formGroup]="bookForm">
@@ -39,15 +39,13 @@
         <div class="form-group">
           <label>Select Publisher</label>
           <select formControlName="publisher" class="form-select">
-            <option *ngFor="let publisher of publishers" [value]="publisher"
-                    [ngStyle]="{'text-color': 'black', 'background-color':'white', 'width':'300px'}">{{publisher}}</option>
+            <option *ngFor="let publisher of publishers" [value]="publisher">{{publisher}}</option>
             <mat-error *ngIf="controls.publisher.invalid">{{getErrorMessage(controls.publisher)}}</mat-error>
           </select>
         </div>
         <br>
         <div class="submitter">
-          <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit"
-                  [ngStyle]="{'position':'relative', 'margin-left':'15px'}">Send
+          <button [disabled]="bookForm.invalid" color="primary" mat-raised-button type="submit">Send
           </button>
         </div>
       </form>

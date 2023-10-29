@@ -1,19 +1,9 @@
-.admin-wrapper {
-  position: relative;
-  left: 10vw;
-  right: 1px;
-  width: 25vw;
-  color: white;
+.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-}
-
-.form {
-  padding: 5px;
-  width: 200px;
-  color: white;
-  position: relative;
-  bottom: 10px;
-  left: 10px;
 }
 
 .form-control {
@@ -22,12 +12,16 @@
   width: 30cap;
   background-color: inherit;
 }
-//
+
 .form-select {
   width: 30cap;
 }
 
 .submitter {
-  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
