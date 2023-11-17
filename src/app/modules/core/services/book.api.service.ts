@@ -20,4 +20,12 @@ export class BookApiService {
   getBook(id: number): Observable<BookResponse> {
     return this.http.get<BookResponse>(`${environment.proxyUrl}/api/book/${id}`);
   }
+
+  login(login: string, password: string) : Observable<any> {
+    return this.http.post<string>(environment.proxyUrl + '/api/login', {username: login, password});
+  }
+
+  isUp():Observable<any> {
+    return this.http.get<any>(environment.proxyUrl + '/api/admin/isUp')
+  }
 }

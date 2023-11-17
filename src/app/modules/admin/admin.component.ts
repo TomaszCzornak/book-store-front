@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {BookRequest} from "../core/models/interfaces/book";
 import {FormsService} from "../core/services/forms.service";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {BookApiService} from "../core/services/book.api.service";
 
 @Component({  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
@@ -70,7 +71,7 @@ export class AdminComponent {
 
 
 
-  constructor(private adminService: AdminService, private router: Router, private formService: FormsService) {
+  constructor(private adminService: AdminService, private router: Router, private formService: FormsService, private bookApiService: BookApiService) {
     this.bookForm.controls['title'].valueChanges.subscribe(val => {
         console.log('testowanie');
         if (val.length == 3) {
@@ -119,7 +120,7 @@ export class AdminComponent {
 
     this.adminService.postBook(RequestBody).subscribe({
       next: (value) => {
-        this.router.navigate(['api/book/all'])
+        this.router.navigate(['api/books/all'])
       },
       error: (err) => {
         this.errorMessage = "wystąpił błąd";
@@ -147,5 +148,21 @@ export class AdminComponent {
 
   }
 
+  public userLogin() {
+    this.bookApiService.login("user1","userPass").subscribe(
+      resp=>{
+        debugger;
+        console.log(resp.headers.get('Authorization'))
+      }
+    )
+  }
+
+  isUp() {
+    this.bookApiService.isUp().subscribe(
+      resp=>{
+        console.log(resp)
+      }
+    );
+  }
 }
 
