@@ -30,7 +30,6 @@ export class AdminComponent {
         validators: [Validators.required],
 
       }),
-      // Book: new FormGroup({
       title: new FormControl('', {
         validators: [
           Validators.required,
@@ -71,7 +70,10 @@ export class AdminComponent {
 
 
 
-  constructor(private adminService: AdminService, private router: Router, private formService: FormsService, private bookApiService: BookApiService) {
+  constructor(private adminService: AdminService,
+              private router: Router,
+              private formService: FormsService,
+              private bookApiService: BookApiService) {
     this.bookForm.controls['title'].valueChanges.subscribe(val => {
         console.log('testowanie');
         if (val.length == 3) {
@@ -149,7 +151,7 @@ export class AdminComponent {
   }
 
   public userLogin() {
-    this.bookApiService.login("user1","userPass").subscribe(
+    this.bookApiService.login({username: "user1", password:"userPass"}).subscribe(
       resp=>{
         debugger;
         console.log(resp.headers.get('Authorization'))
